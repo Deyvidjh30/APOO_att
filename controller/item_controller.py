@@ -11,3 +11,6 @@ class ItemController:
 
     def obterTodosOsItens(self):
         return self.dao.listarTodos()
+
+    def removerItem(self, id_item: int) -> bool:
+        return self.dao.remover(id_item)

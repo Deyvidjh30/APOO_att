@@ -28,3 +28,8 @@ class ItemDAO:
         self.cursor.execute("SELECT id, descricao, quantidade FROM itens")
         rows = self.cursor.fetchall()
         return [Item(id=row[0], descricao=row[1], quantidade=row[2]) for row in rows]
+
+    def remover(self, id_item: int) -> bool:
+        self.cursor.execute("DELETE FROM itens WHERE id = ?", (id_item,))
+        self.conn.commit()
+        return self.cursor.rowcount > 0  # True se removeu, False se não existia
